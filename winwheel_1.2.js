@@ -58,12 +58,12 @@ var determinedGetUrl = "";  	 // Set to URL of the server-side process to load v
 // In order to work correctly the the start and end angles need to match the begining and end of the segments for the prizes in your wheel image.
 // Thinking about a clock face, 0 is at the 12 o'clock, 90 is at the 3 o'clock, 180 is 6 o'clock, 270 is 9 o'clock.
 var prizes = new Array();
-prizes[0] = {"name" : "Amarelo", "startAngle" : 0,   "endAngle" : 59};  // Note how prize end angle is 1 less than start angle of next prize so no overlap.
-prizes[1] = {"name" : "Verde", "startAngle" : 60,  "endAngle" : 119};
-prizes[2] = {"name" : "Laranja", "startAngle" : 120,  "endAngle" : 179};
-prizes[3] = {"name" : "Rosa", "startAngle" : 180, "endAngle" : 239};
-prizes[4] = {"name" : "Azul", "startAngle" : 240, "endAngle" : 299};
-prizes[5] = {"name" : "Vermelho", "startAngle" : 300, "endAngle" : 359};
+prizes[0] = {"name" : "Lipídeos", "startAngle" : 0,   "endAngle" : 59};  // Note how prize end angle is 1 less than start angle of next prize so no overlap.
+prizes[1] = {"name" : "Transformação de substâncias", "startAngle" : 60,  "endAngle" : 119};
+prizes[2] = {"name" : "Hormônio", "startAngle" : 120,  "endAngle" : 179};
+prizes[3] = {"name" : "Glicogênio", "startAngle" : 180, "endAngle" : 239};
+prizes[4] = {"name" : "Sobre o REL", "startAngle" : 240, "endAngle" : 299};
+prizes[5] = {"name" : "Cálcio", "startAngle" : 300, "endAngle" : 359};
 //prizes[6] = {"name" : "Prize 7", "startAngle" : 270, "endAngle" : 314};
 //prizes[7] = {"name" : "Prize 8", "startAngle" : 315, "endAngle" : 361};
 
