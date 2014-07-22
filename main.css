@@ -36,9 +36,37 @@ div.power_controls
 	margin-right:70px;
 }
 
-div.html5_logo
+div.questions_area
 {
-	margin-left:70px;
+	background-color: black;
+	border:1px solid #333333;
+	margin-left:50px;
+	margin-right:50px;
+	width: 650px; 
+    height: 400px;
+}
+
+div.pergunta
+{
+	background-color: white;
+	margin-top:20px;
+	margin-bottom:50px;
+	margin-left:20px;
+	margin-right:20px;
+	width: 610px; 
+    height: 70px;
+    border:1px solid #333333;
+}
+
+div.campo
+{
+	background-color: white;
+	margin-top:10px;
+	margin-left:20px;
+	margin-right:20px;
+	width: 610px; 
+    height: 50px;
+    border:1px solid #333333;
 }
 
 /* Styles for the power selection controls */

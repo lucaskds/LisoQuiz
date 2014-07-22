@@ -1,0 +1,47 @@
+//switch(x){
+						document.getElementById( 'questions' ).style.backgroundColor = prizes[x]['color'];
+					/*	var i;
+						case 0:
+							i = 3;
+							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + lipideos[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + lipideos[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + lipideos[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + lipideos[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + lipideos[i].choices[3];
+							break;
+						case 1:
+							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + transformacao[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + transformacao[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + transformacao[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + transformacao[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + transformacao[i].choices[3];
+							break;
+						case 2:
+							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + hormonio[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + hormonio[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + hormonio[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + hormonio[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + hormonio[i].choices[3];
+							break;
+						case 3:
+							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + glicogenio[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + glicogenio[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + glicogenio[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + glicogenio[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + glicogenio[i].choices[3];
+							break;
+						case 4:
+							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + sobre[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + sobre[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + sobre[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + sobre[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + sobre[i].choices[3];
+							break;
+						case 5:
+
+							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + calcio[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + calcio[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + calcio[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + calcio[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + calcio[i].choices[3];
+							break;*/
