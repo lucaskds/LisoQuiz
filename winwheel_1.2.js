@@ -636,46 +636,46 @@ function doSpin()
 					switch(x){
 						case 0:
 							i = 3;
-							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + lipideos[i]['question'];
-							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + lipideos[i].choices[0];
-							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + lipideos[i].choices[1];
-							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + lipideos[i].choices[2];
-							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + lipideos[i].choices[3];
+							document.getElementById( 'pergunta' ).innerHTML = lipideos[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = lipideos[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = lipideos[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = lipideos[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = lipideos[i].choices[3];
 							break;
 						case 1:
-							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + transformacao[i]['question'];
-							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + transformacao[i].choices[0];
-							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + transformacao[i].choices[1];
-							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + transformacao[i].choices[2];
-							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + transformacao[i].choices[3];
+							document.getElementById( 'pergunta' ).innerHTML = transformacao[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = transformacao[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = transformacao[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = transformacao[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = transformacao[i].choices[3];
 							break;
 						case 2:
-							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + hormonio[i]['question'];
-							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + hormonio[i].choices[0];
-							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + hormonio[i].choices[1];
-							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + hormonio[i].choices[2];
-							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + hormonio[i].choices[3];
+							document.getElementById( 'pergunta' ).innerHTML = hormonio[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = hormonio[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = hormonio[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = hormonio[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = hormonio[i].choices[3];
 							break;
 						case 3:
-							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + glicogenio[i]['question'];
-							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + glicogenio[i].choices[0];
-							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + glicogenio[i].choices[1];
-							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + glicogenio[i].choices[2];
-							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + glicogenio[i].choices[3];
+							document.getElementById( 'pergunta' ).innerHTML = glicogenio[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = glicogenio[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = glicogenio[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = glicogenio[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = glicogenio[i].choices[3];
 							break;
 						case 4:
-							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + sobre[i]['question'];
-							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + sobre[i].choices[0];
-							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + sobre[i].choices[1];
-							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + sobre[i].choices[2];
-							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + sobre[i].choices[3];
+							document.getElementById( 'pergunta' ).innerHTML = sobre[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = sobre[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = sobre[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = sobre[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = sobre[i].choices[3];
 							break;
 						case 5:
-							document.getElementById( 'pergunta' ).innerHTML = "&nbsp;" + calcio[i]['question'];
-							document.getElementById( 'opcao1' ).innerHTML = "&nbsp;" + calcio[i].choices[0];
-							document.getElementById( 'opcao2' ).innerHTML = "&nbsp;" + calcio[i].choices[1];
-							document.getElementById( 'opcao3' ).innerHTML = "&nbsp;" + calcio[i].choices[2];
-							document.getElementById( 'opcao4' ).innerHTML = "&nbsp;" + calcio[i].choices[3];
+							document.getElementById( 'pergunta' ).innerHTML = calcio[i]['question'];
+							document.getElementById( 'opcao1' ).innerHTML = calcio[i].choices[0];
+							document.getElementById( 'opcao2' ).innerHTML = calcio[i].choices[1];
+							document.getElementById( 'opcao3' ).innerHTML = calcio[i].choices[2];
+							document.getElementById( 'opcao4' ).innerHTML = calcio[i].choices[3];
 							break;
 					}
 				break;

@@ -38,7 +38,7 @@ div.power_controls
 
 div.questions_area
 {
-	background-color: black;
+	background-color: white;
 	border:1px solid #333333;
 	margin-left:50px;
 	margin-right:50px;
@@ -56,6 +56,8 @@ div.pergunta
 	width: 610px; 
     height: 70px;
     border:1px solid #333333;
+    border-radius: 15px;
+    box-shadow: 10px 10px 5px #888888;
 }
 
 div.campo
@@ -66,7 +68,16 @@ div.campo
 	margin-right:20px;
 	width: 610px; 
     height: 50px;
-    border:1px solid #333333;
+    border:1px solid #000000;
+    border-radius: 15px;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+div.inner-border
+{
+	margin-top:5px;
+	margin-left:5px;
+	margin-right:5px;
 }
 
 /* Styles for the power selection controls */
