@@ -45,6 +45,8 @@ var pointerAngle     = 0;  	 	 // The angle / location around the wheel where th
 var doPrizeDetection = true; 	 // Set to true if you want the code to detect the prize the user has won when the spinning has stopped. Prizes need to be specified in the prizes array.
 var spinMode         = "random"; // Values can be: random, determinedAngle, determinedPrize.
 var determinedGetUrl = "";  	 // Set to URL of the server-side process to load via ajax when spinMode is determinedAngle or determinedPrize.
+var correta; //Recebe a resposta
+var rodou = false;
 /*
 	The following files included in the download can be used to test the different modes (you will need an Apache server; I use XAMPP on my local machine).
 	determinedPrize: get_determined_prize.php;  // Always returns "2" (so will win prize 3).
@@ -135,7 +137,7 @@ var transformacao = [{
 	"valida": 1,
 	"question": "Por que é incorreto falar que o REL desintoxica o organismo?",
 	"choices": ["Pois o termo correto é \"transformar substâncias\"", "Dependendo da substância ingerida ele pode torná-la tóxica", "Pois ele não faz de desintoxicação de todas as substâncias", "Todas as alternativas"],
-	"correct": "Dennis Ritchie"
+	"correct": "Todas as alternativass"
 }, {
 	"valida": 1,
 	"question": "De onde vem o REL quando há o abuso de drogas?",
@@ -390,6 +392,26 @@ function begin()
 	}
 }
 
+function criaTabela(){
+		for(i = 1; i < 5; i++){
+		var id = "caixa_opcao" + i;
+		document.getElementById(id).style.cursor = 'pointer';
+		document.getElementById(id).onmouseover = function() {
+		    this.style.backgroundColor = "yellow";
+		};
+		document.getElementById(id).onmouseout = function() {
+		    this.style.backgroundColor = "white";
+		};
+		document.getElementById(id).addEventListener('click', function() {
+		    if(rodou){
+			    if(document.getElementById(this.id.substr(6, 13)).innerHTML == correta){
+			    	alert("MAZÁÁÁ MARCO VÉIO!");
+			    	rodou = false;
+			    }
+			}
+		}, false);
+	}
+}
 // ==================================================================================================================================================
 // This function draws the wheel on the canvas in its intial position. Without it only the background would be displayed.
 // ==================================================================================================================================================
@@ -632,57 +654,82 @@ function doSpin()
 				if ((relativeAngle >= prizes[x]['startAngle']) && (relativeAngle <= prizes[x]['endAngle']))
 				{	
 					document.getElementById( 'questions' ).style.backgroundColor = prizes[x]['color'];
-					var i = 3;
+					var i = 0;
 					switch(x){
 						case 0:
-							i = 3;
+							while(lipideos[i]['valida'] == 0)
+								i++;
 							document.getElementById( 'pergunta' ).innerHTML = lipideos[i]['question'];
 							document.getElementById( 'opcao1' ).innerHTML = lipideos[i].choices[0];
 							document.getElementById( 'opcao2' ).innerHTML = lipideos[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = lipideos[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = lipideos[i].choices[3];
+							correta = lipideos[i]['correct'];
+							lipideos[i]['valida'] = 0;
 							break;
 						case 1:
+							while(transformacao[i]['valida'] == 0)
+								i++;
 							document.getElementById( 'pergunta' ).innerHTML = transformacao[i]['question'];
 							document.getElementById( 'opcao1' ).innerHTML = transformacao[i].choices[0];
 							document.getElementById( 'opcao2' ).innerHTML = transformacao[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = transformacao[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = transformacao[i].choices[3];
+							correta = transformacao[i]['correct'];
+							transformacao[i]['valida'] = 0;
 							break;
 						case 2:
+							while(hormonio[i]['valida'] == 0)
+								i++;
 							document.getElementById( 'pergunta' ).innerHTML = hormonio[i]['question'];
 							document.getElementById( 'opcao1' ).innerHTML = hormonio[i].choices[0];
 							document.getElementById( 'opcao2' ).innerHTML = hormonio[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = hormonio[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = hormonio[i].choices[3];
+							correta = hormonio[i]['correct'];
+							hormonio[i]['valida'] = 0;
 							break;
 						case 3:
+							while(glicogenio[i]['valida'] == 0)
+								i++;
 							document.getElementById( 'pergunta' ).innerHTML = glicogenio[i]['question'];
 							document.getElementById( 'opcao1' ).innerHTML = glicogenio[i].choices[0];
 							document.getElementById( 'opcao2' ).innerHTML = glicogenio[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = glicogenio[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = glicogenio[i].choices[3];
+							correta = glicogenio[i]['correct'];
+							glicogenio[i]['valida'] = 0;
 							break;
 						case 4:
+							while(sobre[i]['valida'] == 0)
+								i++;
 							document.getElementById( 'pergunta' ).innerHTML = sobre[i]['question'];
 							document.getElementById( 'opcao1' ).innerHTML = sobre[i].choices[0];
 							document.getElementById( 'opcao2' ).innerHTML = sobre[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = sobre[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = sobre[i].choices[3];
+							correta = sobre[i]['correct'];
+							sobre[i]['valida'] = 0;
 							break;
 						case 5:
+							while(calcio[i]['valida'] == 0)
+								i++;
 							document.getElementById( 'pergunta' ).innerHTML = calcio[i]['question'];
 							document.getElementById( 'opcao1' ).innerHTML = calcio[i].choices[0];
 							document.getElementById( 'opcao2' ).innerHTML = calcio[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = calcio[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = calcio[i].choices[3];
+							correta = calcio[i]['correct'];
+							calcio[i]['valida'] = 0;
 							break;
 					}
 				break;
 				}
+
 			}
+			
 		}
-		
+		rodou = true;
 		// ADD YOUR OWN CODE HERE.
 		// If no prize detection then up to you to do whatever you want when the spinning has stopped.
 	}
@@ -743,7 +790,7 @@ function resetWheel()
 	currentAngle = 0;
 	power        = 0;
 	
-	// Update styels of power buttons so they appear grey again.
+	// Update styles of power buttons so they appear grey again.
 	document.getElementById('pw1').className = "";
 	document.getElementById('pw2').className = "";
 	document.getElementById('pw3').className = "";
@@ -755,6 +802,6 @@ function resetWheel()
 	// Set back to reset so that power selection and click of Spin button work again.
 	wheelState = 'reset';
 	
-	// Call function to draw wheel in start-up poistion.
+	// Call function to draw wheel in start-up position.
 	initialDraw();
 }

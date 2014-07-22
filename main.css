@@ -44,6 +44,8 @@ div.questions_area
 	margin-right:50px;
 	width: 650px; 
     height: 400px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 5px #888888;
 }
 
 div.pergunta
@@ -57,7 +59,7 @@ div.pergunta
     height: 70px;
     border:1px solid #333333;
     border-radius: 15px;
-    box-shadow: 10px 10px 5px #888888;
+    box-shadow: 5px 5px 2px #888888;
 }
 
 div.campo
@@ -70,7 +72,7 @@ div.campo
     height: 50px;
     border:1px solid #000000;
     border-radius: 15px;
-    box-shadow: 10px 10px 5px #888888;
+    box-shadow: 5px 5px 2px #888888;
 }
 
 div.inner-border
