@@ -397,6 +397,17 @@ var calcio = [{
 	"correctPos": 1
 }];
 
+function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
+
+shuffle(lipideos);
+shuffle(transformacao);
+shuffle(hormonio);
+shuffle(glicogenio);
+shuffle(sobre);
+shuffle(calcio);
 // Idea: an idea I had for this, but not implimented, is that if you wanted some the prizes / segments in your wheel to be "winners" and some to be "loosers"
 // you could add a property to the items in the prize array stating if win/loose and then in the doSpin function code that is executed when the spinning has
 // stopped display different message / play different sound (or whatever) depending on if the user has won or lost.
@@ -870,6 +881,7 @@ function resetWheel()
 	
 	// Call function to draw wheel in start-up position.
 	initialDraw();
+	rodou = false;
 	document.getElementById("caixa_opcao1").style.backgroundColor = "white";
 	document.getElementById("caixa_opcao2").style.backgroundColor = "white";
 	document.getElementById("caixa_opcao3").style.backgroundColor = "white";
