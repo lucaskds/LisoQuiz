@@ -45,7 +45,7 @@ var pointerAngle     = 0;  	 	 // The angle / location around the wheel where th
 var doPrizeDetection = true; 	 // Set to true if you want the code to detect the prize the user has won when the spinning has stopped. Prizes need to be specified in the prizes array.
 var spinMode         = "random"; // Values can be: random, determinedAngle, determinedPrize.
 var determinedGetUrl = "";  	 // Set to URL of the server-side process to load via ajax when spinMode is determinedAngle or determinedPrize.
-var correta; //Recebe a resposta
+var questao;
 var rodou = false;
 /*
 	The following files included in the download can be used to test the different modes (you will need an Apache server; I use XAMPP on my local machine).
@@ -71,277 +71,330 @@ var lipideos = [{
 	"valida": 1,
 	"question": "É um lipídeo de membrana:",
 	"choices": ["Cerídeo", "Fosfolipídeo", "Glicerídeos", "Esteróides"],
-	"correct": "Fosfolipídeo"
+	"correct": "Fosfolipídeo",
+	"correctPos": 2
 }, {
 	"valida": 1,
 	"question": "Qual opção a seguir não é função do lipídeo?",
 	"choices": ["Constituir membrana", "Isolamento térmico", "Reserva de glicose", "Impermeabilidade"],
-	"correct": "Reserva de glicose"
+	"correct": "Reserva de glicose",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "Quem faz o transporte dos lipídeos para seus destinos após serem sintetizados no REL?",
 	"choices": ["O próprio REL", "O REL", "O núcleo", "O complexo de Golgi"],
-	"correct": "O complexo de Golgi"
+	"correct": "O complexo de Golgi",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "Que doença abaixo está relacionada a lipídeos?",
 	"choices": ["Hipertensão arterial", "Lúpus", "Artrite", "Câncer de mama"],
-	"correct": "Hipertensão arterial"
+	"correct": "Hipertensão arterial",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "Que compostos abaixo formam os lipídeos?",
 	"choices": ["Nitrogênio, hidrogênio e oxigênio", "Carbono, hidrogênio e oxigênio", "Fósforo, hidrogênio e oxigênio", "Litio, hidrogênio e oxigênio"],
-	"correct": "Carbono, hidrogênio e oxigênio"
+	"correct": "Carbono, hidrogênio e oxigênio",
+	"correctPos": 2
 }, {
 	"valida": 1,
 	"question": "Que itens abaixo são lipídeos?",
 	"choices": ["Esfingomielina e colesterol", "Proteoglicanas e glicosaminoglicanas", "Alanina e valina", "Piruvato e oxaloacetato"],
-	"correct": "Esfingomielina e colesterol"
+	"correct": "Esfingomielina e colesterol",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "Lipídeos possuem uma parte de sua estrutura necessariamente de natureza:",
 	"choices": ["Sulfatada", "Glicolisada", "Hidrofóbica", "Hidrofílica"],
-	"correct": "Hidrofóbica"
+	"correct": "Hidrofóbica",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "Qual alimento abaixo é pobre em quantidade de lipídeo?",
 	"choices": ["Alface", "Castanha", "Abacate", "Cevada"],
-	"correct": "Alface"
+	"correct": "Alface",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "O que são triacilgliceróis?",
 	"choices": ["Carboidratos compostos por 1 molécula de glicerol e 3 cadeias de ácidos graxos", "Carboidratos compostos por 1 cadeia de ácido graxo e 3 moléculas de gliceróis", "Lipídeos compostos por  1 cadeia de ácido graxo e 3 moléculas de gliceróis", "Lipídeos compostos por 1 molécula de glicerol e 3 cadeias de ácidos graxos"],
-	"correct": "Lipídeos compostos por 1 molécula de glicerol e 3 cadeias de ácidos graxos"
+	"correct": "Lipídeos compostos por 1 molécula de glicerol e 3 cadeias de ácidos graxos",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "Lipídeos de mambrana são glicolisados no:",
 	"choices": ["Retículo endoplasmático rugoso", "Retículo endoplasmático liso", "Complexo de Golgi", "Mitocôndria"],
-	"correct": "Complexo de Golgi"
+	"correct": "Complexo de Golgi",
+	"correctPos": 3
 }];
 var transformacao = [{
 	"valida": 1,
 	"question": "Um famoso antitussígeno deixou de ser usado pois ao chegar no REL era transformado em outra substância. Qual era essa substância?",
 	"choices": ["Adrenalina", "Morfina", "Endorfina", "Acetilcolina"],
-	"correct": "Acetilcolina"
+	"correct": "Acetilcolina",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "O princípio geral da inativação de substâncias químicas consiste em transformar as moléculas ou substâncias lipossolúveis em compostos ionizáveis altamente...",
 	"choices": ["Hidrofóbicos", "Apolares", "Hidrossolúveis", "Insolúveis"],
-	"correct": "Hidrossolúveis"
+	"correct": "Hidrossolúveis",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "Como o REL age sobre certas substâncias?",
 	"choices": ["As modifica ou destrói", "Somente modifica", "As modifica e depois destrói", "Somente destrói"],
-	"correct": "As modifica ou destrói"
+	"correct": "As modifica ou destrói",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "Por que é incorreto falar que o REL desintoxica o organismo?",
 	"choices": ["Pois o termo correto é \"transformar substâncias\"", "Dependendo da substância ingerida ele pode torná-la tóxica", "Pois ele não faz de desintoxicação de todas as substâncias", "Todas as alternativas"],
-	"correct": "Todas as alternativas"
+	"correct": "Todas as alternativas",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "De onde vem o REL quando há o abuso de drogas?",
 	"choices": ["Da membrana plasmática", "O RER perde os ribossomos e vira REL", "O REL se divide formando cada vez mais REL", "Não há formação de REL"],
-	"correct": "O REL se divide formando cada vez mais REL"
+	"correct": "O REL se divide formando cada vez mais REL",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "Qual o principal órgão onde ocorre a transformação de substâncias?",
 	"choices": ["Intestino", "Pâncreas", "Fígado", "Rim"],
-	"correct": "Fígado"
+	"correct": "Fígado",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "A ingestão de barbitúricos promove o aumento de REL em quais células?",
 	"choices": ["Hepáticas", "Renais", "Linfócitos", "Basófilos"],
-	"correct": "Hepáticas"
+	"correct": "Hepáticas",
 }, {
 	"valida": 1,
 	"question": "Qual destas substâncias aumenta a produção de REL?",
 	"choices": ["Antibióticos", "Álcool", "Drogas", "Todas as anteriores"],
-	"correct": "Todas as anteriores"
+	"correct": "Todas as anteriores",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "O que acontece com o REL quando se consome muitas drogas?",
 	"choices": ["É degradado pela ação das drogas", "Ocorre produção acelerada de REL", "O REL faz com que a célula entre em apoptose", "A droga não tem contato com o REL"],
-	"correct": "Ocorre produção acelerada de REL"
+	"correct": "Ocorre produção acelerada de REL",
+	"correctPos": 2
 }];
 var hormonio = [{
 	"valida": 1,
 	"question": "Por onde a maioria dos hormônios esteróides pode ser excretada?",
 	"choices": ["Saliva", "Urina", "Sangue", "Respiração"],
-	"correct": "Urina"
+	"correct": "Urina",
+	"correctPos": 2
 }, {
 	"valida": 1,
 	"question": "Qual o principal hormônio produzido nos testículos?",
 	"choices": ["Testosterona", "Progesterona", "Estradiol", "Cortisona"],
-	"correct": "Testosterona"
+	"correct": "Testosterona",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "A testosterona é responsável pelo quê?",
 	"choices": ["Crescimento do cabelo nas mulheres", "Quebra da molécula de glicose nos homens", "Desenvolvimento das características masculinas", "Aumentar nível de açúcar no sangue"],
-	"correct": "Desenvolvimento das características masculinas"
+	"correct": "Desenvolvimento das características masculinas",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "Quais as classes dos hormônios esteróides corretas?",
 	"choices": ["Insulina, Glucagon e Testosterona", "Cortisol, Estradiol e Insulina", "Glucagon, Estradiol e Progesterona", "Testosterona, Cortisol e Estradiol"],
-	"correct": "Testosterona, Cortisol e Estradiol"
+	"correct": "Testosterona, Cortisol e Estradiol",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "É função do estrogênio:",
 	"choices": ["Controlar a produção de espermatozóides", "Desenvolvimento sexual da mulher", "Auxilia o feto a desenvolver órgãos sexuais masculinos", "Nenhuma das anteriores"],
-	"correct": "Desenvolvimento sexual da mulher"
+	"correct": "Desenvolvimento sexual da mulher",
+	"correctPos": 2
 }, {
 	"valida": 1,
 	"question": "Qual o efeito da progesterona?",
 	"choices": ["Manter a secreção do endométrio", "Normalizar os níveis de açúcar no sangue", "Ajudar a prevenir o câncer", "Todas as alternativas anteriores"],
-	"correct": "Manter a secreção do endométrio"
+	"correct": "Manter a secreção do endométrio",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "O uso indiscriminado de hormônios esteróides tem aumentado muito, principalmente entre os jovens, para:",
 	"choices": ["Aumentar altura", "Diminuir quantidade de espinhas", "Clarear os dentes", "Aumentar massa muscular"],
-	"correct": "Aumentar massa muscular"
+	"correct": "Aumentar massa muscular",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "Em quais órgãos ocorre a biossíntese de hormônios esteróides?",
 	"choices": ["Pâncreas, Intestino e Coração", "Testículos, Estômago e Esôfago", "Ovários, Testículos e Córtex Renal", "Ovários, Rim e Pulmões"],
-	"correct": "Ovários, Testículos e Córtex Renal"
+	"correct": "Ovários, Testículos e Córtex Renal",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "Onde o cortisol é produzido?",
 	"choices": ["Membrana plasmática", "Glândula supra-renal", "Fígado", "Ovários"],
-	"correct": "Glândula supra-renal"
+	"correct": "Glândula supra-renal",
+	"correctPos": 2
 }, {
 	"valida": 1,
 	"question": "Qual a molécula precursora dos hormônios esteróides?",
 	"choices": ["Colesterol", "Proteínas", "DNA", "Glicose"],
-	"correct": "Colesterol"
+	"correct": "Colesterol",
+	"correctPos": 1
 }];
 var glicogenio = [{
 	"valida": 1,
 	"question": "O que deve acontecer com a glicose-6-fosfato para que ela passe para e matriz extracelular e para o sangue?",
 	"choices": ["Convertê-la em glicose livre", "Fosforilar a glicose", "Formar glicogênio", "Ela não passa para a ME e nem para o sangue"],
-	"correct": "Convertê-la em glicose livre"
+	"correct": "Convertê-la em glicose livre",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "A mobilização da glicose corresponde a várias etapas, uma delas tem como lugar o REL de quais células?",
 	"choices": ["Hepatócitos", "Hemácias", "Linfócitos", "Mastócitos"],
-	"correct": "Hepatócitos"
+	"correct": "Hepatócitos",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "O que acontece com o glicogênio armazenado no músculo esquelético em exercício?",
 	"choices": ["Permanece aprisionado na célula", "É consumido na glicólise", "Não passa para a corrente sanguínea", "Todas as alternativas"],
-	"correct": "É consumido na glicólise"
+	"correct": "É consumido na glicólise",
+	"correctPos": 2
 }, {
 	"valida": 1,
 	"question": "Qual a principal enzima utilizada na mobilização da glicose?",
 	"choices": ["Glicose-1-fosfatase", "Glicose-2-fosfatase", "Glicose-4-fosfatase", "Glicose-6-fosfatase"],
-	"correct": "Glicose-6-fosfatase"
+	"correct": "Glicose-6-fosfatase",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "Qual o nome do processo em que o glicogênio é quebrado e forma glicose-1-fosfato pela glicogênio-fosforilase?",
 	"choices": ["Glicogênese", "Gliconeogênese", "Glicogenólise", "Glicólise"],
-	"correct": "Glicogenólise"
+	"correct": "Glicogenólise",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "Onde é armazenado a maior parte do glicogênio no organismo humano?",
 	"choices": ["Cérebro", "Músculo esquelético", "Fígado", "Coração"],
-	"correct": "Músculo esquelético"
+	"correct": "Músculo esquelético",
+	"correctPos": 2
 }, {
 	"valida": 1,
 	"question": "Qual a proteína integral do REL?",
 	"choices": ["Glicose-3-fosfatase", "Glicose-4-fosfatase", "Glicose-6-fosfatase", "Glicose-1-fosfatase"],
-	"correct": "Glicose-6-fosfatase"
+	"correct": "Glicose-6-fosfatase",
+	"correctPos": 3
 }];
 var sobre = [{
 	"valida": 1,
 	"question": "É correto afirmar sobre RER e REL:",
 	"choices": ["São organelas diferentes com funções iguais", "São organelas que são estruturalmente iguais, mas com funções diferentes", "São organelas que se comunicam, mas possuem funções diferentes", "São organelas que não se comunicam"],
-	"correct": "São organelas que se comunicam, mas possuem funções diferentes"
+	"correct": "São organelas que se comunicam, mas possuem funções diferentes",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "A membrana do REL é composta por:",
 	"choices": ["Monocamada fosfolipídica", "Bicamada sulfatídica", "Monocamada sulfatídica", "Bicamada fosfolipídica"],
-	"correct": "Bicamada fosfolipídica"
+	"correct": "Bicamada fosfolipídica",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "Que seres vivos não possuem REL?",
 	"choices": ["Bactérias", "Protozoários", "Insetos", "Plantas"],
-	"correct": "Protozoários"
+	"correct": "Protozoários",
+	"correctPos": 2
 }, {
 	"valida": 1,
 	"question": "Podemos dizer que, na célula, o REL localiza-se ao lado:",
 	"choices": ["Do Retículo endoplasmático rugoso", "Da membrana plasmática", "Da mitocôndria", "Dos lisossomos"],
-	"correct": "Do Retículo endoplasmático rugoso"
+	"correct": "Do Retículo endoplasmático rugoso",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "O que aconteceria se não existisse REL?",
 	"choices": ["Não produziríamos hormônios e lipídeos", "Não produziríamos proteínas", "Não seriam transportadas vesículas para fora da célula", "Não teríamos energia"],
-	"correct": "Não produziríamos hormônios e lipídeos"
+	"correct": "Não produziríamos hormônios e lipídeos",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "O retículo endoplasmático liso caracteriza-se por:",
 	"choices": ["Apresentar ribossomos aderidos", "Apresentar cisternas planas paralelas", "Apresentar túbulos irregulares", "Apresentar duas membranas, uma interna e outra externa"],
-	"correct": "Apresentar túbulos irregulares"
+	"correct": "Apresentar túbulos irregulares",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "Não há abundância de REL em qual tipo de célula abaixo?",
 	"choices": ["Células pancreáticas", "Células hepatócitas", "Células sanguíneas", "Células gonadais"],
-	"correct": "Células sanguíneas"
+	"correct": "Células sanguíneas",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "O REL também pode ser chamado de:",
 	"choices": ["Retículo Granuloso", "Retículo Rugoso", "Retículo Golgiense", "Retículo Agranular"],
-	"correct": "Retículo Agranular"
+	"correct": "Retículo Agranular",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "Onde localiza-se o REL?",
 	"choices": ["Dentro da mitocôndria", "Dentro do núcleo", "No citoplasma", "Fora da célula"],
-	"correct": "No citoplasma"
+	"correct": "No citoplasma",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "Não é função do REL",
 	"choices": ["Transformar substâncias", "Glicolisar lipídeos", "Participar da síntese de hormônios esteróides", "Desintoxicação celular"],
-	"correct": "Glicolisar lipídeos"
+	"correct": "Glicolisar lipídeos",
+	"correctPos": 2
 }];
 var calcio = [{
 	"valida": 1,
 	"question": "Como é classificado o cálcio na tabela periódica?",
 	"choices": ["Metais alcalinos terrosos", "Metais alcalinos", "Metais de transição", "Não metais"],
-	"correct": "Metais alcalinos terrosos"
+	"correct": "Metais alcalinos terrosos",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "Quais as outras funções do Ca2+ no organismo?",
 	"choices": ["Atua na ativação da fosforilação oxidativa", "Auxilia a manutenção da integridade sarcolemal", "Ativa proteínas contráteis", "Todas as alternativas"],
-	"correct": "Todas as alternativas"
+	"correct": "Todas as alternativas",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "Qual a importância do Ca2+?",
 	"choices": ["Mensageiro de sinalização intercelular", "Mensageiro de sinalização intracelular", "Transportador de glicose", "Nenhuma das alternativas"],
-	"correct": "Mensageiro de sinalização intercelular"
+	"correct": "Mensageiro de sinalização intercelular",
+	"correctPos": 1
 }, {
 	"valida": 1,
 	"question": "Onde a liberação de Ca2+ para o citosol é essencial para o mecanismo de contração das miofibrilas?",
 	"choices": ["Músculo em seu estado normal", "No núcleo da célula", "Nas fibras musculares estriadas", "No REL"],
-	"correct": "Nas fibras musculares estriadas"
+	"correct": "Nas fibras musculares estriadas",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "O que o REL faz com o Ca2+?",
 	"choices": ["Sintetiza", "Armazena, capta e libera", "Transforma em outras substâncias", "Excreta para fora da célula"],
-	"correct": "Armazena, capta e libera"
+	"correct": "Armazena, capta e libera",
+	"correctPos": 2
 }, {
 	"valida": 1,
 	"question": "Onde o REL armazena Ca2+?",
 	"choices": ["Pele", "Fígado", "Rim", "Músculo"],
-	"correct": "Músculo"
+	"correct": "Músculo",
+	"correctPos": 4
 }, {
 	"valida": 1,
 	"question": "Onde o cálcio é armazenado?",
 	"choices": ["Sarcômero", "Sarcolema", "Retículo sarcoplasmático", "Nenhuma das alternativas"],
-	"correct": "Retículo sarcoplasmático"
+	"correct": "Retículo sarcoplasmático",
+	"correctPos": 3
 }, {
 	"valida": 1,
 	"question": "Qual o tipo de transporte é feito no acúmulo endomembranoso mediante a uma bomba de Ca2+?",
 	"choices": ["Transporte ativo", "Transporte passivo", "Difusão simples", "Difusão facilitada"],
-	"correct": "Transporte ativo"
+	"correct": "Transporte ativo",
+	"correctPos": 1
 }];
 
 // Idea: an idea I had for this, but not implimented, is that if you wanted some the prizes / segments in your wheel to be "winners" and some to be "loosers"
@@ -395,24 +448,31 @@ function begin()
 function criaTabela(){
 		for(i = 1; i < 5; i++){
 		var id = "caixa_opcao" + i;
-		document.getElementById(id).style.cursor = 'pointer';
+		if(rodou)
+			document.getElementById(id).style.cursor = 'pointer';
 		document.getElementById(id).onmouseover = function() {
-		    this.style.backgroundColor = "yellow";
+		    if(rodou)
+		    	this.style.backgroundColor = "yellow";
 		};
 		document.getElementById(id).onmouseout = function() {
-		    this.style.backgroundColor = "white";
+			if(rodou)
+		    	this.style.backgroundColor = "white";
 		};
 		document.getElementById(id).addEventListener('click', function() {
 		    if(rodou){
-			    if(document.getElementById(this.id.substr(6, 13)).innerHTML == correta){
+			    if(document.getElementById(this.id.substr(6, 13)).innerHTML == questao['correct']){
 			    	document.getElementById('correct').play();
-			    	alert("MAZÁÁÁ MARCO VÉIO!");
 			    	rodou = false;
+			    	this.style.backgroundColor = "#6fff8d";
+			    	alert("MAZÁÁÁ MARCO VÉIO!");
 			    }
 			    else {
 			    	document.getElementById('wrong').play();
-    				alert("NOOB!");
     				rodou = false;
+    				var innerId = "caixa_opcao" + questao['correctPos'];
+    				document.getElementById(innerId).style.backgroundColor = "#6fff8d";
+    				this.style.backgroundColor = "#ff6f6f";
+    				alert("Que pena... Você errou...");
 			    }
 			}
 		}, false);
@@ -670,7 +730,7 @@ function doSpin()
 							document.getElementById( 'opcao2' ).innerHTML = lipideos[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = lipideos[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = lipideos[i].choices[3];
-							correta = lipideos[i]['correct'];
+							questao = lipideos[i];
 							lipideos[i]['valida'] = 0;
 							break;
 						case 1:
@@ -681,7 +741,7 @@ function doSpin()
 							document.getElementById( 'opcao2' ).innerHTML = transformacao[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = transformacao[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = transformacao[i].choices[3];
-							correta = transformacao[i]['correct'];
+							questao = transformacao[i];
 							transformacao[i]['valida'] = 0;
 							break;
 						case 2:
@@ -692,7 +752,7 @@ function doSpin()
 							document.getElementById( 'opcao2' ).innerHTML = hormonio[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = hormonio[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = hormonio[i].choices[3];
-							correta = hormonio[i]['correct'];
+							questao = hormonio[i];
 							hormonio[i]['valida'] = 0;
 							break;
 						case 3:
@@ -703,7 +763,7 @@ function doSpin()
 							document.getElementById( 'opcao2' ).innerHTML = glicogenio[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = glicogenio[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = glicogenio[i].choices[3];
-							correta = glicogenio[i]['correct'];
+							questao = glicogenio[i];
 							glicogenio[i]['valida'] = 0;
 							break;
 						case 4:
@@ -714,7 +774,7 @@ function doSpin()
 							document.getElementById( 'opcao2' ).innerHTML = sobre[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = sobre[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = sobre[i].choices[3];
-							correta = sobre[i]['correct'];
+							questao = sobre[i];
 							sobre[i]['valida'] = 0;
 							break;
 						case 5:
@@ -725,7 +785,7 @@ function doSpin()
 							document.getElementById( 'opcao2' ).innerHTML = calcio[i].choices[1];
 							document.getElementById( 'opcao3' ).innerHTML = calcio[i].choices[2];
 							document.getElementById( 'opcao4' ).innerHTML = calcio[i].choices[3];
-							correta = calcio[i]['correct'];
+							questao = calcio[i];
 							calcio[i]['valida'] = 0;
 							break;
 					}
@@ -810,4 +870,8 @@ function resetWheel()
 	
 	// Call function to draw wheel in start-up position.
 	initialDraw();
+	document.getElementById("caixa_opcao1").style.backgroundColor = "white";
+	document.getElementById("caixa_opcao2").style.backgroundColor = "white";
+	document.getElementById("caixa_opcao3").style.backgroundColor = "white";
+	document.getElementById("caixa_opcao4").style.backgroundColor = "white";
 }
