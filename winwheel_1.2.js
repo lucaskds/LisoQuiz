@@ -405,8 +405,14 @@ function criaTabela(){
 		document.getElementById(id).addEventListener('click', function() {
 		    if(rodou){
 			    if(document.getElementById(this.id.substr(6, 13)).innerHTML == correta){
+			    	document.getElementById('correct').play();
 			    	alert("MAZÁÁÁ MARCO VÉIO!");
 			    	rodou = false;
+			    }
+			    else {
+			    	document.getElementById('wrong').play();
+    				alert("NOOB!");
+    				rodou = false;
 			    }
 			}
 		}, false);
