@@ -866,7 +866,8 @@ function powerSelected(powerLevel)
 }
 
 function atualizaPlacar() {
-	document.getElementById("placar").innerHTML = "Rodada: " + rodada + "<br />Placar: &nbsp " + pontuacao;
+	document.getElementById("rodada_valor").innerHTML = rodada;
+	document.getElementById("pontos_valor").innerHTML = pontuacao;
 }
 
 // ==================================================================================================================================================

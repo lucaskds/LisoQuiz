@@ -88,11 +88,44 @@ div.next_round
 	border:1px solid #333333;
 }
 
-div.amostra
+div.rodada
 {
 	width: 96px;
 	border:1px solid #000000;
 	background-color: #cccccc;
+	text-align: center;
+}
+
+div.pontuacao
+{
+	width: 96px;
+	background-color: #cccccc;
+	text-align: center;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-bottom-width:1px;
+	border-left-width:1px;
+	border-right-width:1px;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+	border-right-color: #000000;
+}
+
+div.valores
+{
+	width: 96px;
+	background-color: #cccccc;
+	text-align: center;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-bottom-width:1px;
+	border-left-width:1px;
+	border-right-width:1px;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+	border-right-color: #000000;
 }
 
 /* Styles for the power selection controls */
