@@ -137,7 +137,7 @@ var transformacao = [{
 	"valida": 1,
 	"question": "Por que é incorreto falar que o REL desintoxica o organismo?",
 	"choices": ["Pois o termo correto é \"transformar substâncias\"", "Dependendo da substância ingerida ele pode torná-la tóxica", "Pois ele não faz de desintoxicação de todas as substâncias", "Todas as alternativas"],
-	"correct": "Todas as alternativass"
+	"correct": "Todas as alternativas"
 }, {
 	"valida": 1,
 	"question": "De onde vem o REL quando há o abuso de drogas?",
