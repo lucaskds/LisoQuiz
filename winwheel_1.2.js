@@ -475,7 +475,6 @@ function criaTabela(){
 			    	document.getElementById('correct').play();
 			    	rodou = false;
 			    	this.style.backgroundColor = "#6fff8d";
-			    	alert("MAZÁÁÁ MARCO VÉIO!");
 			    }
 			    else {
 			    	document.getElementById('wrong').play();
@@ -483,7 +482,6 @@ function criaTabela(){
     				var innerId = "caixa_opcao" + questao['correctPos'];
     				document.getElementById(innerId).style.backgroundColor = "#6fff8d";
     				this.style.backgroundColor = "#ff6f6f";
-    				alert("Que pena... Você errou...");
 			    }
 			}
 		}, false);
