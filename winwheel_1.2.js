@@ -37,9 +37,9 @@ Version History:
 // --------------------------------
 // VARIABLES YOU CAN ALTER...
 var canvasId         = "myDrawingCanvas";   // Id of the canvas element on the page the wheel is to be rendered on.
-var wheelImageName   = "prizewheel.png";	// File name of the image for the wheel.
-var spinButtonImgOn  = "spin_on.png";		// Name / path to the images for the spin button.
-var spinButtonImgOff = "spin_off.png";
+var wheelImageName   = "./images/prizewheel.png";	// File name of the image for the wheel.
+var spinButtonImgOn  = "./images/spin_on.png";		// Name / path to the images for the spin button.
+var spinButtonImgOff = "./images/spin_off.png";
 var theSpeed         = 20; 		 // Controls how often the spin function is called (is miliseconds value for animation timer).
 var pointerAngle     = 0;  	 	 // The angle / location around the wheel where the pointer indicaing the prize is located. Can be any value you like, 0 is top (12 oclock) 180 is bottom (6 o'clock) etc.
 var doPrizeDetection = true; 	 // Set to true if you want the code to detect the prize the user has won when the spinning has stopped. Prizes need to be specified in the prizes array.
@@ -870,6 +870,14 @@ function atualizaPlacar() {
 	document.getElementById("pontos_valor").innerHTML = pontuacao;
 }
 
+function openpop() {
+	popup = window.open("ranking.html", "newWin", "height=400, width=280");
+	popup.document.getElementById("hidden_value").value = popup.opener.document.getElementById("pontos_valor").innerHTML;
+	alert("pontos" + popup.opener.document.getElementById("pontos_valor").innerHTML + "\nhidden: " + popup.document.getElementById("hidden_value").value);
+	//OpenWindow.document.close();
+	//self.name="main";
+} 
+
 // ==================================================================================================================================================
 // This function re-sets all vars as re-draws the wheel at the original position. Also re-sets the power and spin buttons on the example wheel.
 // ==================================================================================================================================================
@@ -909,6 +917,7 @@ function resetWheel()
 	}
 	else{
 		document.getElementById('end').play();
-		alert("FIM DE JOGO!!");
+		openpop();
+		//alert("FIM DE JOGO!!");
 	}
 }
