@@ -47,6 +47,9 @@ var spinMode         = "random"; // Values can be: random, determinedAngle, dete
 var determinedGetUrl = "";  	 // Set to URL of the server-side process to load via ajax when spinMode is determinedAngle or determinedPrize.
 var questao;
 var rodou = false;
+var rodada = 1;
+var pontuacao = 0;
+var streak = 0;
 /*
 	The following files included in the download can be used to test the different modes (you will need an Apache server; I use XAMPP on my local machine).
 	determinedPrize: get_determined_prize.php;  // Always returns "2" (so will win prize 3).
@@ -442,11 +445,11 @@ var wheelState = 'reset';
 // ==================================================================================================================================================
 // This function is called by the code on the page after loading. It gets the canvas and loads the wheel image.
 // ==================================================================================================================================================
+
 function begin() 
 {
 	// Get our Canvas element
 	surface = document.getElementById(canvasId);
-
 	// If canvas is supported then load the image.
 	if (surface.getContext) 
 	{
@@ -454,20 +457,26 @@ function begin()
 		wheel.onload = initialDraw;		// Once the image is loaded from file this function is called to draw the image in its starting position.
 		wheel.src = wheelImageName;
 	}
+	document.getElementById("next_round_div").addEventListener('click', function() {
+		   resetWheel();
+		}, false);
 }
 
 function criaTabela(){
 		for(i = 1; i < 5; i++){
 		var id = "caixa_opcao" + i;
-		if(rodou)
-			document.getElementById(id).style.cursor = 'pointer';
+		//if(rodou)
+			
 		document.getElementById(id).onmouseover = function() {
-		    if(rodou)
+		    if(rodou){
+		    	document.getElementById(this.id).style.cursor = 'pointer';
 		    	this.style.backgroundColor = "yellow";
+		    }
 		};
 		document.getElementById(id).onmouseout = function() {
-			if(rodou)
+			if(rodou){
 		    	this.style.backgroundColor = "white";
+		    }
 		};
 		document.getElementById(id).addEventListener('click', function() {
 		    if(rodou){
@@ -475,6 +484,9 @@ function criaTabela(){
 			    	document.getElementById('correct').play();
 			    	rodou = false;
 			    	this.style.backgroundColor = "#6fff8d";
+			    	pontuacao += 1 + streak;
+			    	atualizaPlacar();
+			    	streak++;
 			    }
 			    else {
 			    	document.getElementById('wrong').play();
@@ -482,11 +494,13 @@ function criaTabela(){
     				var innerId = "caixa_opcao" + questao['correctPos'];
     				document.getElementById(innerId).style.backgroundColor = "#6fff8d";
     				this.style.backgroundColor = "#ff6f6f";
+    				streak = 0;
 			    }
 			}
 		}, false);
 	}
 }
+
 // ==================================================================================================================================================
 // This function draws the wheel on the canvas in its intial position. Without it only the background would be displayed.
 // ==================================================================================================================================================
@@ -851,37 +865,49 @@ function powerSelected(powerLevel)
 	}
 }
 
+function atualizaPlacar() {
+	document.getElementById("placar").innerHTML = "Rodada: " + rodada + "<br />Placar: &nbsp " + pontuacao;
+}
+
 // ==================================================================================================================================================
 // This function re-sets all vars as re-draws the wheel at the original position. Also re-sets the power and spin buttons on the example wheel.
 // ==================================================================================================================================================
 function resetWheel()
 {
 	// Ensure that if wheel is spining then it is stopped.
-	clearTimeout(spinTimer);
-	
-	// Re-set all vars to do with spinning angles.
-	angle 		 = 0;
-	targetAngle  = 0;
-	currentAngle = 0;
-	power        = 0;
-	
-	// Update styles of power buttons so they appear grey again.
-	document.getElementById('pw1').className = "";
-	document.getElementById('pw2').className = "";
-	document.getElementById('pw3').className = "";
-	
-	// Make spin button disabled again until power is selected.
-	document.getElementById('spin_button').src       = spinButtonImgOff;
-	document.getElementById('spin_button').className = "";
-	
-	// Set back to reset so that power selection and click of Spin button work again.
-	wheelState = 'reset';
-	
-	// Call function to draw wheel in start-up position.
-	initialDraw();
-	rodou = false;
-	document.getElementById("caixa_opcao1").style.backgroundColor = "white";
-	document.getElementById("caixa_opcao2").style.backgroundColor = "white";
-	document.getElementById("caixa_opcao3").style.backgroundColor = "white";
-	document.getElementById("caixa_opcao4").style.backgroundColor = "white";
+	if(rodada<7){
+		clearTimeout(spinTimer);
+		
+		// Re-set all vars to do with spinning angles.
+		angle 		 = 0;
+		targetAngle  = 0;
+		currentAngle = 0;
+		power        = 0;
+		
+		// Update styles of power buttons so they appear grey again.
+		document.getElementById('pw1').className = "";
+		document.getElementById('pw2').className = "";
+		document.getElementById('pw3').className = "";
+		
+		// Make spin button disabled again until power is selected.
+		document.getElementById('spin_button').src       = spinButtonImgOff;
+		document.getElementById('spin_button').className = "";
+		
+		// Set back to reset so that power selection and click of Spin button work again.
+		wheelState = 'reset';
+		
+		// Call function to draw wheel in start-up position.
+		initialDraw();
+		rodou = false;
+		rodada++;
+		atualizaPlacar();
+		document.getElementById("caixa_opcao1").style.backgroundColor = "white";
+		document.getElementById("caixa_opcao2").style.backgroundColor = "white";
+		document.getElementById("caixa_opcao3").style.backgroundColor = "white";
+		document.getElementById("caixa_opcao4").style.backgroundColor = "white";
+	}
+	else{
+		document.getElementById('end').play();
+		alert("FIM DE JOGO!!");
+	}
 }

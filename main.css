@@ -82,6 +82,19 @@ div.inner-border
 	margin-right:5px;
 }
 
+div.next_round
+{
+	cursor:pointer;
+	border:1px solid #333333;
+}
+
+div.amostra
+{
+	width: 96px;
+	border:1px solid #000000;
+	background-color: #cccccc;
+}
+
 /* Styles for the power selection controls */
 table.power
 {
