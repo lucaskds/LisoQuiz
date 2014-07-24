@@ -50,6 +50,7 @@ var rodou = false;
 var rodada = 1;
 var pontuacao = 0;
 var streak = 0;
+var fim = false;
 /*
 	The following files included in the download can be used to test the different modes (you will need an Apache server; I use XAMPP on my local machine).
 	determinedPrize: get_determined_prize.php;  // Always returns "2" (so will win prize 3).
@@ -887,40 +888,42 @@ function openpop() {
 function resetWheel()
 {
 	// Ensure that if wheel is spining then it is stopped.
-	if(rodada<7){
-		clearTimeout(spinTimer);
-		
-		// Re-set all vars to do with spinning angles.
-		angle 		 = 0;
-		targetAngle  = 0;
-		currentAngle = 0;
-		power        = 0;
-		
-		// Update styles of power buttons so they appear grey again.
-		document.getElementById('pw1').className = "";
-		document.getElementById('pw2').className = "";
-		document.getElementById('pw3').className = "";
-		
-		// Make spin button disabled again until power is selected.
-		document.getElementById('spin_button').src       = spinButtonImgOff;
-		document.getElementById('spin_button').className = "";
-		
-		// Set back to reset so that power selection and click of Spin button work again.
-		wheelState = 'reset';
-		
-		// Call function to draw wheel in start-up position.
-		initialDraw();
-		rodou = false;
-		rodada++;
-		atualizaPlacar();
-		document.getElementById("caixa_opcao1").style.backgroundColor = "white";
-		document.getElementById("caixa_opcao2").style.backgroundColor = "white";
-		document.getElementById("caixa_opcao3").style.backgroundColor = "white";
-		document.getElementById("caixa_opcao4").style.backgroundColor = "white";
-	}
-	else{
-		document.getElementById('end').play();
-		var popup = window.open("ranking.html", "childWindow", "height=400, width=280");
-		//alert("FIM DE JOGO!!");
+	if(!fim){
+		if(rodada<7){
+			clearTimeout(spinTimer);
+			
+			// Re-set all vars to do with spinning angles.
+			angle 		 = 0;
+			targetAngle  = 0;
+			currentAngle = 0;
+			power        = 0;
+			
+			// Update styles of power buttons so they appear grey again.
+			document.getElementById('pw1').className = "";
+			document.getElementById('pw2').className = "";
+			document.getElementById('pw3').className = "";
+			
+			// Make spin button disabled again until power is selected.
+			document.getElementById('spin_button').src       = spinButtonImgOff;
+			document.getElementById('spin_button').className = "";
+			
+			// Set back to reset so that power selection and click of Spin button work again.
+			wheelState = 'reset';
+			
+			// Call function to draw wheel in start-up position.
+			initialDraw();
+			rodou = false;
+			rodada++;
+			atualizaPlacar();
+			document.getElementById("caixa_opcao1").style.backgroundColor = "white";
+			document.getElementById("caixa_opcao2").style.backgroundColor = "white";
+			document.getElementById("caixa_opcao3").style.backgroundColor = "white";
+			document.getElementById("caixa_opcao4").style.backgroundColor = "white";
+		}
+		else{
+			document.getElementById('end').play();
+			var popup = window.open("ranking.html", "childWindow", "height=400, width=280");
+			fim = true;
+		}
 	}
 }

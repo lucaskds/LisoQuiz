@@ -63,3 +63,12 @@ div.bordinha
 {
 	border-top: 1px solid #000000;
 }
+
+div.mensagem
+{
+	margin-right: 5px;
+	position: absolute;
+	bottom: 3;
+	font-family: Arial;
+	font-size: 14px;
+}

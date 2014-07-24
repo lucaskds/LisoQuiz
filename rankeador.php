@@ -39,7 +39,7 @@
 				$linecount++;
 			}
 			fclose($handle);
-			$handle = fopen("ranking.dat", "w");
+			//$handle = fopen("ranking.dat", "w");
 
 			function comparaPontuacao($a, $b) {
 				return strnatcmp($a[0], $b[0]);
@@ -52,17 +52,18 @@
 				if($categories[$key][0] != ""){
 					array_push($top10, $categories[$key]);
 					$string = $categories[$key][0] . "," . $categories[$key][1];
-					fwrite($handle, $string);
+					//fwrite($handle, $string);
 				}
 				else
 					break;
 			}
-			fclose($handle);
+			//fclose($handle);
 			echo "<div class='top10_header'>TOP 10";
 			echo "</div>";
 			for($i = 0; $i < 10; $i++){
 				echo "<div class='top10_posicao'>" . ($i+1) . "&ordm</div><div class='top10_info'>" . $top10[$i][1] . " (". $top10[$i][0] . " pontos)</div>";
 			}
 			echo "<div class='bordinha'></div>";
+			echo "<div class='mensagem'>Feche essa janela e recarregue a página do jogo para jogar novamente! :D</div>";
 		?>
 </html>
