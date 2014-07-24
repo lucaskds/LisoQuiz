@@ -71,7 +71,7 @@ prizes[3] = {"name" : "Glicogênio", "startAngle" : 180, "endAngle" : 239, "colo
 prizes[4] = {"name" : "Sobre o REL", "startAngle" : 240, "endAngle" : 299, "color" : "#6f8aff"};
 prizes[5] = {"name" : "Cálcio", "startAngle" : 300, "endAngle" : 359, "color" : "#ff6f6f"};
 
-var lipideos = [{
+﻿var lipideos = [{
 	"valida": 1,
 	"question": "É um lipídeo de membrana:",
 	"choices": ["Cerídeo", "Fosfolipídeo", "Glicerídeos", "Esteróides"],
@@ -86,7 +86,7 @@ var lipideos = [{
 }, {
 	"valida": 1,
 	"question": "Quem faz o transporte dos lipídeos para seus destinos após serem sintetizados no REL?",
-	"choices": ["O próprio REL", "O REL", "O núcleo", "O complexo de Golgi"],
+	"choices": ["O próprio REL", "O RER", "O núcleo", "O complexo de Golgi"],
 	"correct": "O complexo de Golgi",
 	"correctPos": 4
 }, {
@@ -280,8 +280,8 @@ var glicogenio = [{
 }, {
 	"valida": 1,
 	"question": "Onde é armazenado a maior parte do glicogênio no organismo humano?",
-	"choices": ["Cérebro", "Músculo esquelético", "Fígado", "Coração"],
-	"correct": "Músculo esquelético",
+	"choices": ["Cérebro", "Pâncreas", "Fígado", "Coração"],
+	"correct": "Fígado",
 	"correctPos": 2
 }, {
 	"valida": 1,
