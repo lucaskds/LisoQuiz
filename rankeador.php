@@ -39,7 +39,23 @@
 				$linecount++;
 			}
 			fclose($handle);
-			//$handle = fopen("ranking.dat", "w");
+			$handle = fopen("top10.html", "w");
+			fwrite($handle, "");
+			fclose($handle);
+
+			$handle = fopen("top10.html", "a+");
+
+			$string = "<html>
+				<head>
+					<meta charset=\"UTF-8\">
+					<title>Top 10!</title>
+					<link rel=\"stylesheet\" href=\"./ranking.css\" type=\"text/css\" />
+					<script type='text/javascript' src='winwheel_1.2.js'></script>
+				</head>";
+
+			fwrite($handle, $string);
+			echo $string;
+
 
 			function comparaPontuacao($a, $b) {
 				return strnatcmp($a[0], $b[0]);
@@ -58,12 +74,17 @@
 					break;
 			}
 			//fclose($handle);
-			echo "<div class='top10_header'>TOP 10";
-			echo "</div>";
+			fwrite($handle, "<div class='top10_header'>TOP 10</div>");
+			echo "<div class='top10_header'>TOP 10</div>";
 			for($i = 0; $i < 10; $i++){
-				echo "<div class='top10_posicao'>" . ($i+1) . "&ordm</div><div class='top10_info'>" . $top10[$i][1] . " (". $top10[$i][0] . " pontos)</div>";
+				$string = "<div class='top10_posicao'>" . ($i+1) . "&ordm</div><div class='top10_info'>" . $top10[$i][1] . " (". $top10[$i][0] . " pontos)</div>";
+				fwrite($handle, $string);
+				echo $string;
 			}
+			fwrite($handle, "<div class='bordinha'></div>");
+			fwrite($handle, "<div class='mensagem'>Feche essa janela e recarregue a página do jogo para jogar novamente! :D</div>");
 			echo "<div class='bordinha'></div>";
 			echo "<div class='mensagem'>Feche essa janela e recarregue a página do jogo para jogar novamente! :D</div>";
+			fclose($handle);
 		?>
 </html>

@@ -875,12 +875,17 @@ function pontuar(){
 	return pontuacao;
 }
 
+function abreTop10()
+{
+	var popup = window.open("top10.html", "childWindow", "height=400, width=280");
+}
+/*
 function openpop() {
 	
 	alert("pontos" + popup.opener.document.getElementById("pontos_valor").innerHTML + "\nhidden: " + popup.document.getElementById("hidden_value").value);
 	//OpenWindow.document.close();
 	//self.name="main";
-} 
+} */
 
 // ==================================================================================================================================================
 // This function re-sets all vars as re-draws the wheel at the original position. Also re-sets the power and spin buttons on the example wheel.
