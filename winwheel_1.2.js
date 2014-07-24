@@ -870,9 +870,12 @@ function atualizaPlacar() {
 	document.getElementById("pontos_valor").innerHTML = pontuacao;
 }
 
+function pontuar(){
+	return pontuacao;
+}
+
 function openpop() {
-	popup = window.open("ranking.html", "newWin", "height=400, width=280");
-	popup.document.getElementById("hidden_value").value = popup.opener.document.getElementById("pontos_valor").innerHTML;
+	
 	alert("pontos" + popup.opener.document.getElementById("pontos_valor").innerHTML + "\nhidden: " + popup.document.getElementById("hidden_value").value);
 	//OpenWindow.document.close();
 	//self.name="main";
@@ -917,7 +920,7 @@ function resetWheel()
 	}
 	else{
 		document.getElementById('end').play();
-		openpop();
+		var popup = window.open("ranking.html", "childWindow", "height=400, width=280");
 		//alert("FIM DE JOGO!!");
 	}
 }

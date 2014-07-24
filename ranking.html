@@ -1,14 +1,3 @@
-<!--<html>
-	<head>
-		
-	</head>
-	<body>
-		<div>
-			ranki
-		</div>
-	</body>
-</html>
--->
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -28,6 +17,7 @@
 	<div class="form">
 			<input id="nome_id" class="form" type="text" name="nome">
 			<input id="hidden_value" type="hidden" name="pontuacao">
+			<script>document.getElementById('hidden_value').value = window.opener.pontuar();</script>
 	</div>
 	<div class="submit">
 		<input type="submit" value="Enviar">
